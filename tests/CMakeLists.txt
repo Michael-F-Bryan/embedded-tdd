@@ -1,8 +1,6 @@
-project(EmbeddedTDD)
-
 # include project source
-include_directories(${PROJECT_SOURCE_DIR}/../include)
-include_directories(${PROJECT_SOURCE_DIR}/../include/LedDriver)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/include/LedDriver)
 
 enable_testing()
 find_package(GTest REQUIRED)
