@@ -83,11 +83,12 @@ TEST_F(LedDriverTest, upper_and_lower_bounds) {
 TEST_F(LedDriverTest, cant_turn_on_out_of_bounds_leds) {
   uint16_t bits;
   LedDriver driver(&bits);
+  bits = 0;
 
-  driver.turn_on(-1);
-  driver.turn_on(0);
-  driver.turn_on(17);
-  driver.turn_on(3141);
+  ASSERT_ANY_THROW(driver.turn_on(-1));
+  ASSERT_ANY_THROW(driver.turn_on(0));
+  ASSERT_ANY_THROW(driver.turn_on(17));
+  ASSERT_ANY_THROW(driver.turn_on(3141));
 
   ASSERT_EQ(0, bits);
 }
@@ -95,11 +96,12 @@ TEST_F(LedDriverTest, cant_turn_on_out_of_bounds_leds) {
 TEST_F(LedDriverTest, cant_turn_off_out_of_bounds_leds) {
   uint16_t bits = 0xffff;
   LedDriver driver(&bits);
+  bits = 0xffff;
 
-  driver.turn_off(-1);
-  driver.turn_off(0);
-  driver.turn_off(17);
-  driver.turn_off(3141);
+  ASSERT_ANY_THROW(driver.turn_off(-1));
+  ASSERT_ANY_THROW(driver.turn_off(0));
+  ASSERT_ANY_THROW(driver.turn_off(17));
+  ASSERT_ANY_THROW(driver.turn_off(3141));
 
-  ASSERT_EQ(0, bits);
+  ASSERT_EQ(0xffff, bits);
 }

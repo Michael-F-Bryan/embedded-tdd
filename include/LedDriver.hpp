@@ -1,4 +1,6 @@
 #include <cstdint>
+#include <exception>
+#include <string>
 
 class LedDriver {
 public:
@@ -16,4 +18,5 @@ private:
   uint16_t m_current_state;
 
   void update_hardware();
+  void bounds_check(int bit);
 };
