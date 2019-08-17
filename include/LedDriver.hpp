@@ -19,4 +19,6 @@ private:
 
   void update_hardware();
   void bounds_check(int bit);
+  void set_bit(int bit);
+  void clear_bit(int bit);
 };
