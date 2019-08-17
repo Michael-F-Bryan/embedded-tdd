@@ -1,8 +1,8 @@
-#include "LightScheduler/internal.hpp"
-#include "LightScheduler.hpp"
+#include "lights/internal.hpp"
+#include "lights/LightScheduler.hpp"
 #include <optional>
 
-namespace light_scheduler {
+namespace lights {
 
 static std::optional<LightID> _last_id;
 static LightState _last_state = LightState::Unknown;
@@ -28,5 +28,4 @@ std::ostream &operator<<(std::ostream &outs, const LightState &state) {
   }
 }
 
-
-} // namespace light_scheduler
+} // namespace lights

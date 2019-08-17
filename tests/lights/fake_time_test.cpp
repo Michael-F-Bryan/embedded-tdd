@@ -1,8 +1,8 @@
-#include "LightScheduler/time.hpp"
 #include "fake_time.hpp"
+#include "lights/time.hpp"
 #include "gtest/gtest.h"
 
-using namespace light_scheduler;
+using namespace lights;
 
 class FakeTimeTest : public ::testing::Test {};
 

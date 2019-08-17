@@ -1,7 +1,7 @@
 #if !defined(LIGHT_SCHEDULER_TIME_H)
 #define LIGHT_SCHEDULER_TIME_H
 
-namespace light_scheduler {
+namespace lights {
 
 enum class Frequency {
   EveryDay,
@@ -35,6 +35,6 @@ struct Time {
 Time get_time();
 void set_periodic_alarm();
 
-} // namespace light_scheduler
+} // namespace lights
 
 #endif // LIGHT_SCHEDULER_TIME_H

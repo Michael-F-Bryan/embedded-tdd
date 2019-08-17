@@ -6,7 +6,7 @@
 #include <optional>
 #include <stdint.h>
 
-namespace light_scheduler {
+namespace lights {
 
 class LightScheduler {
 public:
@@ -17,6 +17,6 @@ public:
   void turn_off(LightID light_id, Day day, int minute_of_day);
 };
 
-} // namespace light_scheduler
+} // namespace lights
 
 #endif // LIGHT_SCHEDULER_H

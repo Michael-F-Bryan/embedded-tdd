@@ -1,9 +1,9 @@
-#include "LightScheduler.hpp"
-#include "LightScheduler/internal.hpp"
+#include "lights/LightScheduler.hpp"
+#include "lights/internal.hpp"
 #include <limits>
 #include <optional>
 
-namespace light_scheduler {
+namespace lights {
 
 struct ScheduledLightEvent {
   LightID light_id;
@@ -48,12 +48,12 @@ void LightScheduler::wake_up() {
 
   switch (event.state) {
   case LightState::On:
-    light_scheduler::turn_on(event.light_id);
+    lights::turn_on(event.light_id);
     break;
   case LightState::Off:
-    light_scheduler::turn_off(event.light_id);
+    lights::turn_off(event.light_id);
     break;
   }
 }
 
-} // namespace light_scheduler
+} // namespace lights

@@ -6,7 +6,7 @@
 #include <iostream>
 #include <optional>
 
-namespace light_scheduler {
+namespace lights {
 
 enum class LightState {
   Unknown,
@@ -22,6 +22,6 @@ void set_last_id(std::optional<LightID> id);
 LightState last_state();
 void set_last_state(LightState state);
 
-} // namespace light_scheduler
+} // namespace lights
 
 #endif // LIGHT_SCHEDULER_INTERNAL_H

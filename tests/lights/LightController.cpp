@@ -1,7 +1,7 @@
-#include "LightController.hpp"
-#include "LightScheduler/internal.hpp"
+#include "lights/LightController.hpp"
+#include "lights/internal.hpp"
 
-namespace light_scheduler {
+namespace lights {
 
 void turn_on(LightID id) {
   set_last_id(id);
@@ -13,4 +13,4 @@ void turn_off(LightID id) {
   set_last_state(LightState::Off);
 }
 
-} // namespace light_scheduler
+} // namespace lights

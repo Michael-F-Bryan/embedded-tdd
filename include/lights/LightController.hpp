@@ -3,13 +3,13 @@
 
 #include <stdint.h>
 
-namespace light_scheduler {
+namespace lights {
 
 using LightID = uint16_t;
 
 void turn_on(LightID id);
 void turn_off(LightID id);
 
-} // namespace light_scheduler
+} // namespace lights
 
 #endif // LIGHT_CONTROLLER_H

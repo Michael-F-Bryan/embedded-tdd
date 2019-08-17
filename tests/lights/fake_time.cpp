@@ -1,15 +1,15 @@
 #include "fake_time.hpp"
-#include "LightScheduler.hpp"
+#include "lights/LightScheduler.hpp"
 
-using namespace light_scheduler;
+using namespace lights;
 
 static Time now = Time();
 
-namespace light_scheduler {
+namespace lights {
 
 Time get_time() { return now; }
 
-} // namespace light_scheduler
+} // namespace lights
 
 namespace fake_time {
 
