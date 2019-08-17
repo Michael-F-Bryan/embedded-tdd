@@ -1,6 +1,6 @@
 #include "LedDriver.hpp"
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 uint16_t mask_for_bit(int bit) { return 1 << (bit - 1); }
 
