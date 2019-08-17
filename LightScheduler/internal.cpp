@@ -15,4 +15,18 @@ LightState last_state() { return _last_state; }
 
 void set_last_state(LightState state) { _last_state = state; }
 
+std::ostream &operator<<(std::ostream &outs, const LightState &state) {
+  switch (state) {
+  case LightState::Unknown:
+    return outs << "Unknown";
+  case LightState::Off:
+    return outs << "Off";
+  case LightState::On:
+    return outs << "On";
+  default:
+    return outs << "<unknown state>";
+  }
 }
+
+
+} // namespace light_scheduler

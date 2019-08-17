@@ -4,13 +4,13 @@
 namespace light_scheduler {
 
 void turn_on(LightID id) {
-    set_last_id(id);
-    set_last_state(LightState::On);
+  set_last_id(id);
+  set_last_state(LightState::On);
 }
 
 void turn_off(LightID id) {
-    set_last_id(id);
-    set_last_state(LightState::Off);
+  set_last_id(id);
+  set_last_state(LightState::Off);
 }
 
-}
+} // namespace light_scheduler

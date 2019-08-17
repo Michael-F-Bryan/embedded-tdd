@@ -48,3 +48,15 @@ TEST_F(LightSchedulerTest, schedule_on_everyday_it_is_time) {
   ASSERT_EQ(3, last_id());
   ASSERT_EQ(LightState::On, last_state());
 }
+
+TEST_F(LightSchedulerTest, schedule_off_everyday_it_is_time) {
+  LightScheduler scheduler;
+  fake_time::set_day(Day::Monday);
+  fake_time::set_minute(1200);
+
+  scheduler.turn_off(3, Day::Monday, 1200);
+  scheduler.wake_up();
+
+  ASSERT_EQ(3, last_id());
+  ASSERT_EQ(LightState::Off, last_state());
+}

@@ -10,6 +10,6 @@ using LightID = uint16_t;
 void turn_on(LightID id);
 void turn_off(LightID id);
 
-} // of namespace light_scheduler
+} // namespace light_scheduler
 
 #endif // LIGHT_CONTROLLER_H
