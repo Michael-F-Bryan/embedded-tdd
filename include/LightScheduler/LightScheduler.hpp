@@ -22,11 +22,10 @@ class LightScheduler {
 public:
   using LightID = uint16_t;
 
+  LightScheduler();
+
   void wake_up();
   void turn_on(LightID light_id, Frequency frequency, uint16_t time);
-
-  std::optional<LightID> last_id() const;
-  LightState last_state() const;
 };
 
 } // namespace light_scheduler

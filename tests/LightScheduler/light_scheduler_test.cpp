@@ -1,4 +1,5 @@
 #include "LightScheduler.hpp"
+#include "LightScheduler_internal.hpp"
 #include "fake_time.hpp"
 #include "gtest/gtest.h"
 
@@ -14,6 +15,6 @@ TEST_F(LightSchedulerTest, schedule_on_everyday_not_time_yet) {
   scheduler.turn_on(3, Frequency::EveryDay, 1200);
   scheduler.wake_up();
 
-  ASSERT_FALSE(scheduler.last_id());
-  ASSERT_EQ(LightState::Unknown, scheduler.last_state());
+  ASSERT_FALSE(last_id());
+  ASSERT_EQ(LightState::Unknown, last_state());
 }
