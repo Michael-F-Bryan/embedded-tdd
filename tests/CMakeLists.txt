@@ -13,6 +13,7 @@ add_library(LightSchedulerFakeTime ./LightScheduler/fake_time.cpp)
 add_executable(RunAllTests
         LightScheduler/light_scheduler_test.cpp
         LightScheduler/fake_time_test.cpp
+        LightScheduler/LightController.cpp
         LedDriver/led_driver_test.cpp)
 
 target_link_libraries(RunAllTests ${GTEST_BOTH_LIBRARIES} pthread LedDriver

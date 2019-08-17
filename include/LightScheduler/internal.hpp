@@ -6,8 +6,14 @@
 
 namespace light_scheduler {
 
-std::optional<LightScheduler::LightID> last_id();
-void set_last_id(std::optional<LightScheduler::LightID> id);
+enum class LightState {
+  Unknown,
+  On,
+  Off,
+};
+
+std::optional<LightID> last_id();
+void set_last_id(std::optional<LightID> id);
 
 LightState last_state();
 void set_last_state(LightState state);

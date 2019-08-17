@@ -15,6 +15,8 @@ enum class Day {
   Friday,
   Saturday,
   Sunday,
+
+  EveryDay,
 };
 
 struct Time {

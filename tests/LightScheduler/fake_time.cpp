@@ -5,8 +5,16 @@ using namespace light_scheduler;
 
 static Time now = Time();
 
-Time light_scheduler::get_time() { return now; }
+namespace fake_time {
 
-void fake_time::set_day(Day day) { now.day_of_week = day; }
+void set_day(Day day) { now.day_of_week = day; }
 
-void fake_time::set_minute(uint16_t minute) { now.minute_of_day = minute; }
+void set_minute(uint16_t minute) { now.minute_of_day = minute; }
+
+}
+
+namespace light_scheduler {
+
+Time get_time() { return now; }
+
+}

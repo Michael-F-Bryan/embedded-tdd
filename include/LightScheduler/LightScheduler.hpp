@@ -4,21 +4,16 @@
 #include "time.hpp"
 #include <optional>
 #include <stdint.h>
+#include "LightController.hpp"
 
 namespace light_scheduler {
 
-enum class LightState {
-  Unknown,
-};
-
 class LightScheduler {
 public:
-  using LightID = uint16_t;
-
   LightScheduler();
 
   void wake_up();
-  void turn_on(LightID light_id, Frequency frequency, uint16_t time);
+  void turn_on(LightID light_id, Day day, int minute_of_day);
 };
 
 } // namespace light_scheduler
