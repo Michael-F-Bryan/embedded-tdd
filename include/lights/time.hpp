@@ -1,4 +1,4 @@
-#if !defined(LIGHT_SCHEDULER_TIME_H)
+#ifndef LIGHT_SCHEDULER_TIME_H
 #define LIGHT_SCHEDULER_TIME_H
 
 namespace lights {

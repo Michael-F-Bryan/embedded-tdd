@@ -1,4 +1,4 @@
-#if !defined(LIGHT_CONTROLLER_H)
+#ifndef LIGHT_CONTROLLER_H
 #define LIGHT_CONTROLLER_H
 
 #include <stdint.h>

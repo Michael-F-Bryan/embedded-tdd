@@ -1,4 +1,4 @@
-#if !defined(LIGHT_SCHEDULER_INTERNAL_H)
+#ifndef LIGHT_SCHEDULER_INTERNAL_H
 #define LIGHT_SCHEDULER_INTERNAL_H
 
 #include "LightScheduler.hpp"

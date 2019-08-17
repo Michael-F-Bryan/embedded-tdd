@@ -3,7 +3,7 @@
 #include "LedDriver.hpp"
 #include "gtest/gtest.h"
 
-class LedDriverTest : public ::testing::Test {};
+class LedDriverTest : public testing::Test {};
 
 TEST_F(LedDriverTest, leds_are_off_after_create) {
   uint16_t bits = 0xffff;

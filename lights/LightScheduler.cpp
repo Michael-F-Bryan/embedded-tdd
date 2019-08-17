@@ -2,18 +2,18 @@
 #include "lights/internal.hpp"
 #include <limits>
 #include <optional>
+#include <exception>
 
 namespace lights {
 
 struct ScheduledLightEvent {
-  LightID light_id;
-  int minute_of_day;
-  LightState state;
+  LightID light_id = 0;
+  int minute_of_day = 0;
+  LightState state = LightState::Unknown;
 
   constexpr ScheduledLightEvent(LightID id, int minute, LightState state)
       : light_id(id), minute_of_day(minute), state(state) {}
-  constexpr ScheduledLightEvent()
-      : light_id(0), minute_of_day(0), state(LightState::Unknown) {}
+  constexpr ScheduledLightEvent() {}
 };
 
 static std::optional<ScheduledLightEvent> scheduledEvent;
@@ -33,19 +33,7 @@ void LightScheduler::turn_off(LightID light_id, Day day, int minute_of_day) {
       ScheduledLightEvent(light_id, minute_of_day, LightState::Off);
 }
 
-void LightScheduler::wake_up() {
-  Time now = get_time();
-
-  if (!scheduledEvent.has_value()) {
-    return;
-  }
-
-  ScheduledLightEvent &event = scheduledEvent.value();
-
-  if (now.minute_of_day != event.minute_of_day) {
-    return;
-  }
-
+void operate_light(const ScheduledLightEvent &event) {
   switch (event.state) {
   case LightState::On:
     lights::turn_on(event.light_id);
@@ -53,7 +41,24 @@ void LightScheduler::wake_up() {
   case LightState::Off:
     lights::turn_off(event.light_id);
     break;
+  default:
+    throw std::invalid_argument("Invalid light state");
   }
+}
+
+void process_events_due_now(const Time &now, const ScheduledLightEvent &event) {
+  if (now.minute_of_day == event.minute_of_day) {
+    operate_light(event);
+  }
+}
+
+void LightScheduler::wake_up() {
+  if (!scheduledEvent.has_value()) {
+    return;
+  }
+
+  Time now = get_time();
+  process_events_due_now(now, scheduledEvent.value());
 }
 
 } // namespace lights

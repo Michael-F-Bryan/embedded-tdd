@@ -1,17 +1,15 @@
 #include "LedDriver.hpp"
 #include <stdexcept>
-#include <string>
+#include <sstream>
 
 uint16_t mask_for_bit(int bit) { return 1 << (bit - 1); }
 
 void LedDriver::bounds_check(int bit) {
   if (bit <= 0 || bit > sizeof(uint16_t) * 8) {
-    std::string message;
-    message += "Bit ";
-    message += bit;
-    message += " is out of bounds";
+    std::stringstream message;
+    message << "Bits " << bit << " is out of bounds";
 
-    throw std::invalid_argument(message);
+    throw std::out_of_range(message.str());
   }
 }
 

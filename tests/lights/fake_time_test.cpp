@@ -4,7 +4,7 @@
 
 using namespace lights;
 
-class FakeTimeTest : public ::testing::Test {};
+class FakeTimeTest : public testing::Test {};
 
 TEST_F(FakeTimeTest, get_and_set) {
   fake_time::set_day(Day::Saturday);
