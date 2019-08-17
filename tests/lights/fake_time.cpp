@@ -16,6 +16,8 @@ Time get_time() { return now; }
 AlarmID set_periodic_alarm(int seconds, std::function<void()> callback) {
   next_callback = callback;
   alarm_period = seconds;
+
+  return 1;
 }
 
 void cancel_periodic_alarm(AlarmID id) {

@@ -11,8 +11,7 @@ class LightSchedulerTest : public testing::Test {
 public:
   LightSchedulerTest() {
     fake_time::set_time(Day::Monday, 0);
-    set_last_id(std::optional<LightID>());
-    set_last_state(LightState::Unknown);
+    fake_light_controller::reset();
   }
 };
 
@@ -21,8 +20,8 @@ TEST_F(LightSchedulerTest, nothing_happens_when_nothing_scheduled) {
 
   scheduler.wake_up();
 
-  ASSERT_FALSE(last_id());
-  ASSERT_EQ(LightState::Unknown, last_state());
+  ASSERT_FALSE(last_id().has_value());
+  ASSERT_FALSE(last_state().has_value());
 }
 
 TEST_F(LightSchedulerTest, schedule_on_everyday_not_time_yet) {
@@ -32,8 +31,8 @@ TEST_F(LightSchedulerTest, schedule_on_everyday_not_time_yet) {
   scheduler.turn_on(3, Day::EveryDay, 1200);
   scheduler.wake_up();
 
-  ASSERT_FALSE(last_id());
-  ASSERT_EQ(LightState::Unknown, last_state());
+  ASSERT_FALSE(last_id().has_value());
+  ASSERT_FALSE(last_state().has_value());
 }
 
 TEST_F(LightSchedulerTest, schedule_on_everyday_it_is_time) {
@@ -68,7 +67,7 @@ TEST_F(LightSchedulerTest, scheduled_for_tuesday_but_its_monday) {
   scheduler.wake_up();
 
   ASSERT_FALSE(last_id().has_value());
-  ASSERT_EQ(LightState::Unknown, last_state());
+  ASSERT_FALSE(last_state().has_value());
 }
 
 TEST_F(LightSchedulerTest, scheduled_for_tuesday_and_its_tuesday) {
@@ -91,7 +90,7 @@ TEST_F(LightSchedulerTest, scheduled_for_weekend_its_friday) {
   scheduler.wake_up();
 
   ASSERT_FALSE(last_id().has_value());
-  ASSERT_EQ(LightState::Unknown, last_state());
+  ASSERT_FALSE(last_state().has_value());
 }
 
 TEST_F(LightSchedulerTest, scheduled_for_weekend_its_saturday) {
@@ -126,7 +125,7 @@ TEST_F(LightSchedulerTest, scheduled_for_weekend_its_monday) {
   scheduler.wake_up();
 
   ASSERT_FALSE(last_id().has_value());
-  ASSERT_EQ(LightState::Unknown, last_state());
+  ASSERT_FALSE(last_state().has_value());
 }
 
 class LightSchedulerInitAndCleanup : public testing::Test {};

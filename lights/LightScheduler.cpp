@@ -10,7 +10,7 @@ struct ScheduledLightEvent {
   LightID light_id = 0;
   int minute_of_day = 0;
   Day day = Day::EveryDay;
-  LightState state = LightState::Unknown;
+  LightState state = LightState::On;
 
   constexpr ScheduledLightEvent(LightID id, int minute, LightState state,
                                 Day day)

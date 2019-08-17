@@ -12,15 +12,12 @@ void turn_on(LightID id);
 void turn_off(LightID id);
 
 enum class LightState {
-  Unknown,
   On,
   Off,
 };
 
 inline std::ostream &operator<<(std::ostream &outs, const LightState &state) {
   switch (state) {
-  case LightState::Unknown:
-    return outs << "Unknown";
   case LightState::Off:
     return outs << "Off";
   case LightState::On:

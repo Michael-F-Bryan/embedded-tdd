@@ -6,10 +6,17 @@
 
 namespace fake_light_controller {
 
+void reset();
 std::optional<lights::LightID> last_id();
-void set_last_id(std::optional<lights::LightID> id);
-std::optional<lights::LightState> last_state();
-void set_last_state(std::optional<lights::LightState> state);
+void set_last_id(lights::LightID id);
+std::optional<lights::LightState> last_state(lights::LightID id);
+void set_last_state(lights::LightID id, std::optional<lights::LightState> state);
+
+inline std::optional<lights::LightState> last_state() {
+    auto id = last_id();
+
+    return id.has_value() ? last_state(id.value()) : std::optional<lights::LightState>();
+}
 
 } // namespace fake_light_controller
 
