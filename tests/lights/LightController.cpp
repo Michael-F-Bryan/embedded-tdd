@@ -24,10 +24,10 @@ void turn_off(LightID id) {
 
 namespace fake_light_controller {
 
-  void reset() {
-    states.clear();
-    ::last_id.reset();
-  }
+void reset() {
+  states.clear();
+  ::last_id.reset();
+}
 
 std::optional<LightID> last_id() { return ::last_id; }
 void set_last_id(LightID id) { ::last_id = id; }
@@ -42,7 +42,7 @@ std::optional<LightState> last_state(LightID id) {
 
 void set_last_state(LightID id, std::optional<LightState> state) {
   if (state.has_value()) {
-  states[id] = state.value();
+    states[id] = state.value();
   } else {
     states.erase(id);
   }

@@ -128,6 +128,18 @@ TEST_F(LightSchedulerTest, scheduled_for_weekend_its_monday) {
   ASSERT_FALSE(last_state().has_value());
 }
 
+TEST_F(LightSchedulerTest, schedule_two_events_at_the_same_time) {
+  LightScheduler scheduler;
+  fake_time::set_time(Day::Monday, 1200);
+
+  scheduler.turn_off(3, Day::Monday, 1200);
+  scheduler.turn_on(42, Day::Monday, 1200);
+  scheduler.wake_up();
+
+  ASSERT_EQ(LightState::On, fake_light_controller::last_state(42));
+  ASSERT_EQ(LightState::Off, fake_light_controller::last_state(3));
+}
+
 class LightSchedulerInitAndCleanup : public testing::Test {};
 
 TEST_F(LightSchedulerInitAndCleanup, register_scheduler_wake_up) {

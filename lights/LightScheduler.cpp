@@ -3,6 +3,8 @@
 #include <functional>
 #include <limits>
 #include <optional>
+#include <ostream>
+#include <vector>
 
 namespace lights {
 
@@ -18,20 +20,30 @@ struct ScheduledLightEvent {
   constexpr ScheduledLightEvent() {}
 };
 
+std::ostream &operator<<(std::ostream &outs, const ScheduledLightEvent &event) {
+  return outs << "Scheduled Event { light_id: " << event.light_id
+              << ", minute_of_day: " << event.minute_of_day
+              << ", day: " << event.day << " }";
+}
+
 static std::optional<ScheduledLightEvent> scheduledEvent;
+static std::vector<ScheduledLightEvent> scheduledEvents;
 
 LightScheduler::LightScheduler() {
   scheduledEvent = std::optional<ScheduledLightEvent>();
+  scheduledEvents.clear();
 }
 
 void LightScheduler::turn_on(LightID light_id, Day day, int minute_of_day) {
-  scheduledEvent =
-      ScheduledLightEvent(light_id, minute_of_day, LightState::On, day);
+  auto ev = ScheduledLightEvent(light_id, minute_of_day, LightState::On, day);
+  scheduledEvent = ev;
+  scheduledEvents.push_back(ev);
 }
 
 void LightScheduler::turn_off(LightID light_id, Day day, int minute_of_day) {
-  scheduledEvent =
-      ScheduledLightEvent(light_id, minute_of_day, LightState::Off, day);
+  auto ev = ScheduledLightEvent(light_id, minute_of_day, LightState::Off, day);
+  scheduledEvent = ev;
+  scheduledEvents.push_back(ev);
 }
 
 void operate_light(const ScheduledLightEvent &event) {
@@ -70,12 +82,15 @@ void process_events_due_now(const Time &now, const ScheduledLightEvent &event) {
 }
 
 void LightScheduler::wake_up() {
-  if (!scheduledEvent.has_value()) {
-    return;
+  Time now = get_time();
+
+  for (auto &event : scheduledEvents) {
+    process_events_due_now(now, event);
   }
 
-  Time now = get_time();
-  process_events_due_now(now, scheduledEvent.value());
+  if (scheduledEvent.has_value()) {
+    process_events_due_now(now, scheduledEvent.value());
+  }
 }
 
 AlarmID register_wakeup(int seconds,
