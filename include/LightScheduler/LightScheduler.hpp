@@ -1,0 +1,6 @@
+#if !defined(LIGHT_SCHEDULER_H)
+#define LIGHT_SCHEDULER_H
+
+
+
+#endif // LIGHT_SCHEDULER_H

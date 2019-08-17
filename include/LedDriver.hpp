@@ -1,3 +1,6 @@
+#if !defined(LED_DRIVER_H)
+#define LED_DRIVER_H
+
 #include <cstdint>
 #include <exception>
 #include <string>
@@ -22,3 +25,6 @@ private:
   void set_bit(int bit);
   void clear_bit(int bit);
 };
+
+#endif // LED_DRIVER_H
+
